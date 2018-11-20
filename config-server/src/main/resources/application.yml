@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: config-server    #服务名
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/lancefate/SpringcloudConfig/     #配置项目地址
+          searchPaths: respo                               #目录
+      label: master                                        #分支
+server:
+  port: 8888        #端口
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka/       #注册中心地址

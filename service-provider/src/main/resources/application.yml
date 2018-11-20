@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: service-provider
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 1   #0-1  这个标签，yml和properties不一样
+server:
+  port: 6002
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka/
+    healthcheck:
+      enabled: true
+      ####pom actuator###
+    instance:
+      lease-expiration-duration-in-seconds: 30
+      lease-renewal-interval-in-seconds: 10
+
