@@ -4,15 +4,14 @@ import com.springcloud.eureka.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Controller
+
+@RestController
 @RequestMapping(value="/users")
 public class UserController {
 
@@ -21,28 +20,36 @@ public class UserController {
     @Value("${server.port}")
     String port;
 
+
+
     @RequestMapping(value="/list",method={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
-    @ResponseBody
-    public String list(@RequestParam String name) throws InterruptedException{
+    public Map<String, String> list(@RequestParam("name") String name) throws InterruptedException{
 //        response.setHeader("Access-Control-Allow-Origin", "*");
         LOG.log(Level.INFO,"list");
-        return name.toUpperCase()+port;
+        Map<String,String> map = new HashMap();
+        map.put("result",port);
+        return map;
     }
+
 
     @RequestMapping(value="/list2",method={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
-    @ResponseBody
-    public String list(@RequestParam String name,@RequestParam String password) throws InterruptedException{
+    public Map<String,String> list2(@RequestParam String name,@RequestParam String password) throws InterruptedException{
 //        response.setHeader("Access-Control-Allow-Origin", "*");
-        return name.toUpperCase()+password.toLowerCase()+port;
+        LOG.log(Level.INFO,"list2");
+        Map<String,String> map = new HashMap();
+        map.put("result",name.toUpperCase()+password.toLowerCase()+port);
+        return map;
     }
 
-    @ResponseBody
     @RequestMapping(value="/list3",method={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
     public User getUser(@RequestParam String name,@RequestParam String password) throws InterruptedException{
 //        response.setHeader("Access-Control-Allow-Origin", "*");
+
         User user=new User();
         user.setId(16L);
         user.setUsername(name+password+port);
+        LOG.log(Level.INFO,user.toString());
+//        System.out.println(user.toString());
         return user;
     }
 

@@ -6,9 +6,11 @@ spring:
   sleuth:
     enabled: true
     sampler:
-      percentage: 1   #0-1  这个标签，yml和properties不一样
+      percentage: 0.1
+
 server:
-  port: 6002
+  port: 6001
+
 
 eureka:
   client:
@@ -20,4 +22,3 @@ eureka:
     instance:
       lease-expiration-duration-in-seconds: 30
       lease-renewal-interval-in-seconds: 10
-

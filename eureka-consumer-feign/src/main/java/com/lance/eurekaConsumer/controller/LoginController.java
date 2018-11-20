@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class LoginController {
 
 
-    Logger logger;
+//    Logger logger;
 
     @Autowired
     RemoteService service;
@@ -33,23 +33,26 @@ public class LoginController {
 //            .decoder(new JacksonDecoder()).target(RemoteService.class, "http://sample-client/gradle-web");
 
 
+
     @RequestMapping(value = "/test",method={RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
     public String login(String name){
-        logger.info("/test "+name);
+//        logger.info("fdsa "+name);
          return service.getOwner(name);
     }
 
 
+
     @RequestMapping(value = "/test2",method={RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
     public String login2(String name,String password){
-        logger.info("/test2 "+name+password);
+//        logger.info("/test2 "+name+password);
         return service.getUP(name,password);
     }
 
 
+
     @RequestMapping(value = "/test3",method={RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
     public User login3(String name,String password){
-        logger.info("/test3 "+name+" "+password);
+//        logger.info("/test3 "+name+" "+password);
         return service.getUser(name,password);
     }
 
